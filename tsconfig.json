@@ -4,9 +4,6 @@
   "compilerOptions": {
     "baseUrl": ".",
     "target": "esnext",
-    "declaration": true,
-    "declarationDir": "./example/build",
-    "outDir": "./example/build",
     "lib": ["dom", "esnext", "dom.iterable"],
     "downlevelIteration": true,
     // "importHelpers": true,
