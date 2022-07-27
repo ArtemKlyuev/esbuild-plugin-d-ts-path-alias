@@ -3,6 +3,7 @@
 import path from 'path';
 
 import { build } from 'esbuild';
+import { dTSPathAliasPlugin } from './src/plugin/plugin';
 
 // const withTempDir = async (fn) => {
 //   try {
@@ -26,9 +27,10 @@ const builder = async (out: string): Promise<void> => {
     target: 'esnext',
     format: 'esm',
     treeShaking: true,
-    splitting: true,
+    // splitting: true,
     // tsconfig: './example/tsconfig.json',
     entryPoints: [path.resolve(__dirname, './example/src/utils/index.ts')],
+    plugins: [dTSPathAliasPlugin()],
     // absWorkingDir: path.resolve(__dirname, './example'),
     // outfile: out,
     outdir: out,
@@ -37,7 +39,9 @@ const builder = async (out: string): Promise<void> => {
 };
 
 const start = () => {
-  builder('./example/build');
+  builder('./example/build-d-ts');
+  // builder('./example/build2.js');
+  // builder('build2.js');
 };
 
 start();
