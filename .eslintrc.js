@@ -1,5 +1,5 @@
 /** @type {import('eslint').Linter.Config} */
-const config = {
+module.exports = {
   extends: ['airbnb-base'],
   root: true,
   env: {
@@ -7,7 +7,6 @@ const config = {
     es2022: true,
     jest: true,
   },
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
@@ -21,5 +20,3 @@ const config = {
     semi: ['error', 'always'],
   },
 };
-
-export default config;

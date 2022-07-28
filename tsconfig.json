@@ -1,12 +1,11 @@
 {
-  "exclude": ["node_modules", "dist"],
-  "include": ["./example/src"],
+  "exclude": ["node_modules", "dist", "example"],
   "compilerOptions": {
     "baseUrl": ".",
     "target": "esnext",
     "lib": ["dom", "esnext", "dom.iterable"],
+    "checkJs": true,
     "downlevelIteration": true,
-    // "importHelpers": true,
     "noImplicitAny": true,
     "strict": true,
     "noImplicitReturns": true,
@@ -17,8 +16,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    // "noEmit": true,
-    "experimentalDecorators": true,
+    "noEmit": true,
     "resolveJsonModule": true,
     "paths": {
       "@utils/*": ["./example/src/utils/*"]
