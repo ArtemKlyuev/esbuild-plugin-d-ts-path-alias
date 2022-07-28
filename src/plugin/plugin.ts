@@ -21,15 +21,17 @@ export interface PluginOptions {
   debug?: boolean;
 }
 
+const PLUGIN_NAME = 'esbuild-plugin-d-ts-path-alias';
+
 const DEFAULT_TSCONFIG_LOCATION = path.resolve(process.cwd(), 'tsconfig.json');
 
-export const dTSPathAliasPlugin = (pluginOptions: PluginOptions = { debug: false }): Plugin => {
-  const logger = new Logger('esbuild-plugin-d-ts-path-alias', pluginOptions.debug!);
+export const dTSPathAliasPlugin = (pluginOptions?: PluginOptions): Plugin => {
+  const logger = new Logger(PLUGIN_NAME, Boolean(pluginOptions?.debug));
 
   return {
-    name: 'esbuild-plugin-d-ts-path-alias',
+    name: PLUGIN_NAME,
     setup(build) {
-      const { entryPoints, outdir, outfile, tsconfig, logLevel } = build.initialOptions;
+      const { entryPoints, outdir, outfile, tsconfig } = build.initialOptions;
 
       const esbuildOutDir = getESBuildOutDir({ outdir, outfile });
 
