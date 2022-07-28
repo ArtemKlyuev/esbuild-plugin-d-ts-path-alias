@@ -2,6 +2,7 @@ import chalk from 'chalk';
 
 export class Logger {
   private readonly logger?: Console;
+
   private readonly prefix: string = '';
 
   constructor(name: string, disable: boolean) {
