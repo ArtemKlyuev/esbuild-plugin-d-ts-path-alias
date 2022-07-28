@@ -1,7 +1,7 @@
 import * as ts from 'typescript';
 import tsTransformPaths from '@zerollup/ts-transform-paths';
 
-import { removeNonTsImports } from '../transform';
+import { removeNonTsImports } from '../removeNonTsImports';
 
 export const compileDts = (files: string[], compilerOptions: ts.CompilerOptions): ts.EmitResult => {
   const host = ts.createCompilerHost(compilerOptions);
