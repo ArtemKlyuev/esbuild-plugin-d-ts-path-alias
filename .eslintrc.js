@@ -12,6 +12,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
+  globals: { Console: 'readonly' },
   plugins: ['@typescript-eslint'],
   rules: {
     indent: ['error', 2],
