@@ -30,6 +30,8 @@ module.exports = {
       },
     ],
     'import/prefer-default-export': 'off',
+    'object-curly-newline': 'off',
+    'arrow-body-style': 'off',
   },
   settings: {
     'import/parsers': {
