@@ -10,7 +10,7 @@ export interface PluginOptions {
   /**
    * Custom path to `tsconfig.json`
    */
-  tsConfigPath?: string;
+  tsconfigPath?: string;
   /**
    * Custom path to output declaration files
    */
@@ -35,9 +35,9 @@ export const dTSPathAliasPlugin = (pluginOptions?: PluginOptions): Plugin => {
 
       const esbuildOutDir = getESBuildOutDir({ outdir, outfile });
 
-      const tsConfigPath = pluginOptions?.tsConfigPath ?? tsconfig ?? DEFAULT_TSCONFIG_LOCATION;
+      const tsconfigPath = pluginOptions?.tsconfigPath ?? tsconfig ?? DEFAULT_TSCONFIG_LOCATION;
 
-      const compilerOptions = getCompilerOptions(tsConfigPath);
+      const compilerOptions = getCompilerOptions(tsconfigPath);
 
       const declarationDir = getDeclarationDir({
         esbuildOutDir,
