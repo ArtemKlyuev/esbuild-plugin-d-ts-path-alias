@@ -7,30 +7,30 @@ import { getTSConfigPath } from '../getTSConfigPath';
 import { readConfigFile } from '../readConfigFile';
 
 const formatHost: ts.FormatDiagnosticsHost = {
-  getCanonicalFileName: (path: string) => path,
+  getCanonicalFileName: (filePath) => filePath,
   getCurrentDirectory: ts.sys.getCurrentDirectory,
   getNewLine: () => ts.sys.newLine,
 };
 
 export const getCompilerOptionsJson = (configPath: string): ts.CompilerOptions | never => {
-  const tsConfigPath = getTSConfigPath(configPath);
+  const tsconfigPath = getTSConfigPath(configPath);
 
-  if (!tsConfigPath) {
+  if (!tsconfigPath) {
     throw new Error(`Can't find typescript config file. Searched path: "${configPath}"`);
   }
 
-  const tsConfig = readConfigFile(tsConfigPath);
+  const tsconfig = readConfigFile(tsconfigPath);
 
-  if (tsConfig.error) {
-    throw new Error(ts.formatDiagnostic(tsConfig.error, formatHost));
+  if (tsconfig.error) {
+    throw new Error(ts.formatDiagnostic(tsconfig.error, formatHost));
   }
 
-  const result: ts.CompilerOptions[] = [tsConfig.config.compilerOptions];
+  const result: ts.CompilerOptions[] = [tsconfig.config.compilerOptions];
 
-  if (tsConfig.config.extends) {
+  if (tsconfig.config.extends) {
     const { searchPath } = getConfigPath(configPath);
 
-    const options = getCompilerOptionsJson(path.join(searchPath, tsConfig.config.extends));
+    const options = getCompilerOptionsJson(path.join(searchPath, tsconfig.config.extends));
 
     result.push(options);
   }

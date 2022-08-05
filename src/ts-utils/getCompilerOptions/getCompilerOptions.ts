@@ -13,7 +13,7 @@ export const getCompilerOptions = (configPath: string): ts.CompilerOptions | nev
 
   const convertResult = ts.convertCompilerOptionsFromJson(jsonConfig, process.cwd());
 
-  if (convertResult.errors && convertResult.errors.length > 0) {
+  if (convertResult?.errors.length > 0) {
     throw new Error(ts.formatDiagnostics(convertResult.errors, formatHost));
   }
 
