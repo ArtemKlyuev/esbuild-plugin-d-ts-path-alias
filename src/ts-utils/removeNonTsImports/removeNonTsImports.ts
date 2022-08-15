@@ -5,8 +5,8 @@ type VisitorCreator = (ctx: ts.TransformationContext) => ts.Visitor;
 const visitorCreator: VisitorCreator = (ctx) => {
   const visitor: ts.Visitor = (node) => {
     if (ts.isImportDeclaration(node) && !node.importClause) {
-      // If it has no import class (e.g import 'foo.css'), rm the node
-      return;
+      // If it has no import class (e.g import 'foo.css'), remove the node
+      return undefined;
     }
 
     return ts.visitEachChild(node, visitor, ctx);
@@ -16,7 +16,7 @@ const visitorCreator: VisitorCreator = (ctx) => {
 };
 
 export const removeNonTsImports = <T extends ts.Node>(
-  ctx: ts.TransformationContext
+  ctx: ts.TransformationContext,
 ): ts.Transformer<T> => {
   return (sourceFile: T) => ts.visitNode(sourceFile, visitorCreator(ctx));
 };

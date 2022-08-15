@@ -3,7 +3,7 @@ import * as ts from 'typescript';
 import { getCompilerOptionsJson } from '../getCompilerOptionsJson';
 
 const formatHost: ts.FormatDiagnosticsHost = {
-  getCanonicalFileName: (path: string) => path,
+  getCanonicalFileName: (path) => path,
   getCurrentDirectory: ts.sys.getCurrentDirectory,
   getNewLine: () => ts.sys.newLine,
 };

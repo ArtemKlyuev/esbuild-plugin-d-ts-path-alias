@@ -5,4 +5,4 @@ export function someFunction(a: number, b: number): void {
   console.log(a + bar);
 }
 
-export type Kek = Foo;
+export type Bar = Foo;
