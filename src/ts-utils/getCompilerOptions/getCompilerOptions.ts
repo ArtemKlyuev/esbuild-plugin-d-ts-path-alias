@@ -1,6 +1,7 @@
 import * as ts from 'typescript';
 
 import { getCompilerOptionsJson } from '../getCompilerOptionsJson';
+import { getConfigPath } from '../getConfigPath';
 
 const formatHost: ts.FormatDiagnosticsHost = {
   getCanonicalFileName: (path) => path,
@@ -11,7 +12,9 @@ const formatHost: ts.FormatDiagnosticsHost = {
 export const getCompilerOptions = (configPath: string): ts.CompilerOptions | never => {
   const jsonConfig = getCompilerOptionsJson(configPath);
 
-  const convertResult = ts.convertCompilerOptionsFromJson(jsonConfig, process.cwd());
+  const { searchPath } = getConfigPath(configPath);
+
+  const convertResult = ts.convertCompilerOptionsFromJson(jsonConfig, searchPath);
 
   if (convertResult?.errors.length > 0) {
     throw new Error(ts.formatDiagnostics(convertResult.errors, formatHost));
