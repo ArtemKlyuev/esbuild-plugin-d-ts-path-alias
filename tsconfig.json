@@ -17,9 +17,6 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
-    "resolveJsonModule": true,
-    "paths": {
-      "@utils/*": ["./example/src/utils/*"]
-    }
+    "resolveJsonModule": true
   }
 }
