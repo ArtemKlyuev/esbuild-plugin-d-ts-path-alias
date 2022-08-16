@@ -13,7 +13,7 @@ describe('ts-utils', () => {
       );
     });
 
-    it('should throw an error if cant read tsconfig file', () => {
+    it("should throw an error if can't read tsconfig file", () => {
       // @ts-expect-error we don't need actual implementation, just `error` property itself
       readConfigFileMock.mockReturnValueOnce({ error: true });
 
