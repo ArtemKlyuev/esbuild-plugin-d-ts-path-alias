@@ -26,7 +26,7 @@ const PLUGIN_NAME = 'esbuild-plugin-d-ts-path-alias';
 const DEFAULT_TSCONFIG_LOCATION = path.resolve(process.cwd(), 'tsconfig.json');
 
 export const dTSPathAliasPlugin = (pluginOptions?: PluginOptions): Plugin => {
-  const logger = new Logger(PLUGIN_NAME, Boolean(pluginOptions?.debug));
+  const logger = new Logger(PLUGIN_NAME, !pluginOptions?.debug);
 
   return {
     name: PLUGIN_NAME,
@@ -60,9 +60,10 @@ export const dTSPathAliasPlugin = (pluginOptions?: PluginOptions): Plugin => {
 
         if (emitResult.emitSkipped) {
           logger.error('Typescript did not emit declaration files!');
-        } else {
-          logger.info('Successfully emitted declaration files!');
+          return;
         }
+
+        logger.info('Successfully emitted declaration files!');
       });
     },
   };
