@@ -1,0 +1,27 @@
+{
+  "exclude": ["node_modules", "dist", "example"],
+  "include": ["./"],
+  "compilerOptions": {
+    "baseUrl": "./",
+    "target": "es2019",
+    "declaration": true,
+    "lib": ["dom", "esnext", "dom.iterable"],
+    "downlevelIteration": true,
+    "importHelpers": true,
+    "noImplicitAny": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": false,
+    "resolveJsonModule": true,
+    "paths": {
+      "@utils/*": ["./utils/*"]
+    }
+  }
+}
