@@ -5,8 +5,8 @@ jest.mock('chalk', () => ({ green: jest.fn((input) => input), red: jest.fn((inpu
 describe('utils', () => {
   describe('Logger', () => {
     it('should not output messages if `disable` set to true', () => {
-      const log = jest.spyOn(console, 'log').mockImplementation(() => {});
-      const error = jest.spyOn(console, 'error').mockImplementation(() => {});
+      const log = jest.spyOn(console, 'log');
+      const error = jest.spyOn(console, 'error');
 
       const logger = new Logger('logger', true);
 
