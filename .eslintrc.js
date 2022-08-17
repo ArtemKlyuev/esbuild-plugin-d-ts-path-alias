@@ -35,6 +35,7 @@ module.exports = {
     'comma-dangle': 'off',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
+    'no-template-curly-in-string': 'off',
   },
   settings: {
     'import/parsers': {
