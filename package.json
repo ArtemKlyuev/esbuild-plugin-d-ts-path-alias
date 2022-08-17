@@ -27,6 +27,9 @@
   },
   "homepage": "https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias",
   "scripts": {
+    "typecheck": "tsc --pretty --noEmit",
+    "lint": "eslint '**/*.{js,jsx,ts,tsx}' --quiet",
+    "lint:fix": "yarn lint:js --fix --no-error-on-unmatched-pattern",
     "build": "ts-node esbuild.config.ts --swc",
     "test": "jest",
     "test:watch": "jest --watch",
