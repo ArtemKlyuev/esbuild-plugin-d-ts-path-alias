@@ -5,7 +5,7 @@
   "license": "MIT",
   "author": "Artem Klyuev",
   "main": "dist/cjs/index.js",
-  "typings": "dist/esm/index.d.ts",
+  "typings": "dist/typings/plugin/plugin.d.ts",
   "module": "dist/esm/index.js",
   "keywords": [
     "typescript",
