@@ -1,8 +1,31 @@
 {
   "name": "esbuild-plugin-d-ts-path-alias",
   "version": "0.0.0",
-  "main": "index.js",
+  "description": "ESBuild plugin for compiling typescript declarations along with path aliases transformation.",
   "license": "MIT",
+  "author": "Artem Klyuev",
+  "main": "dist/cjs/index.js",
+  "typings": "dist/esm/index.d.ts",
+  "module": "dist/esm/index.js",
+  "keywords": [
+    "typescript",
+    "compiler",
+    "esbuild",
+    "plugin",
+    "declaration",
+    "dts"
+  ],
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/issues"
+  },
+  "homepage": "https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias",
   "scripts": {
     "build": "ts-node esbuild.config.ts --swc",
     "test": "jest",
