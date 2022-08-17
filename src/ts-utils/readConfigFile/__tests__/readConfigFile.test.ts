@@ -9,7 +9,7 @@ describe('ts-utils', () => {
       expect(config).toEqual({ config: tsconfig, error: undefined });
     });
 
-    it('should return error when can\'t read config file', () => {
+    it("should throw an error when can't read the config file", () => {
       const config = readConfigFile('non-exist');
 
       expect(config.config).toEqual({});

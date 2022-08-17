@@ -8,7 +8,7 @@ describe('ts-utils', () => {
       expect(path).toBe('./example/tsconfig.json');
     });
 
-    it('should return undefined if no config path', () => {
+    it('should return undefined if the path to the config is not found', () => {
       const path = getTSConfigPath('./non-exist/tsconfig.test.json');
 
       expect(path).toBe(undefined);

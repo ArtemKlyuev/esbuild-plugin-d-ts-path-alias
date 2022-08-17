@@ -4,7 +4,7 @@ import { getCompilerOptionsJson } from '../getCompilerOptionsJson';
 
 describe('ts-utils', () => {
   describe('getCompilerOptionsJson', () => {
-    it('should throw an error if no tsconfig finded', () => {
+    it('should throw an error if tsconfig is not found', () => {
       const searchPath = './non-exist/tsconfig.test.json';
 
       expect(() => getCompilerOptionsJson(searchPath)).toThrowError();
