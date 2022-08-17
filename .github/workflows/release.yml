@@ -21,5 +21,6 @@ jobs:
       - run: yarn install --frozen-lockfile --silent
       - run: yarn semantic-release
         env:
+          NODE_ENV: 'production'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
