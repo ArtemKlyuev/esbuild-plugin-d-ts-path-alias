@@ -1,47 +1,36 @@
-// import fs from 'fs/promises';
-// import os from 'os';
-import path from 'path';
+import { build, BuildOptions } from 'esbuild';
 
-import { build } from 'esbuild';
-import { dTSPathAliasPlugin } from './src/plugin/plugin';
+import { dTSPathAliasPlugin } from './src/plugin';
 
-// const withTempDir = async (fn) => {
-//   try {
-//     return await fn(dir);
-//   } finally {
-//     fs.rmdir(dir, { recursive: true });
-//   }
-// };
+import { devDependencies, peerDependencies } from './package.json';
 
-// const createTempDir = async (): Promise<string> => {
-//   const dir = await fs.mkdtemp((await fs.realpath(os.tmpdir())) + path.sep);
-//   return dir;
-// };
+const EXTERNAL_PACKAGES = Object.keys({ ...devDependencies, ...peerDependencies });
 
-// const removeDir = (dir: string): void => {
-//   fs.rmdir(dir, { recursive: true });
-// };
-
-const builder = async (out: string): Promise<void> => {
-  await build({
-    target: 'esnext',
-    format: 'esm',
-    treeShaking: true,
-    // splitting: true,
-    // tsconfig: './example/tsconfig.json',
-    entryPoints: [path.resolve(__dirname, './example/src/utils/index.ts')],
-    plugins: [dTSPathAliasPlugin()],
-    // absWorkingDir: path.resolve(__dirname, './example'),
-    // outfile: out,
-    outdir: out,
-    bundle: true,
-  });
+const baseOptions: BuildOptions = {
+  target: 'es2019',
+  external: EXTERNAL_PACKAGES,
+  platform: 'node',
+  entryPoints: ['./src/index.ts'],
+  bundle: true,
+  treeShaking: true,
+  sourcemap: false,
+  minify: false,
+  plugins: [dTSPathAliasPlugin({ outputPath: 'dist/typings' })],
 };
 
-const start = () => {
-  builder('./example/build-d-ts');
-  // builder('./example/build2.js');
-  // builder('build2.js');
+const start = async (): Promise<void> => {
+  await build({
+    ...baseOptions,
+    splitting: true,
+    format: 'esm',
+    outdir: 'dist/esm',
+  });
+
+  await build({
+    ...baseOptions,
+    format: 'cjs',
+    outdir: 'dist/cjs',
+  });
 };
 
 start();
