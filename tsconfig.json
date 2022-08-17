@@ -1,10 +1,9 @@
 {
-  "exclude": ["node_modules", "dist", "example"],
+  "exclude": ["node_modules", "dist"],
   "compilerOptions": {
     "baseUrl": ".",
     "target": "esnext",
-    "lib": ["dom", "esnext", "dom.iterable"],
-    "checkJs": true,
+    "lib": ["esnext", "dom.iterable"],
     "downlevelIteration": true,
     "noImplicitAny": true,
     "strict": true,
@@ -16,7 +15,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
+    "noEmit": false,
     "resolveJsonModule": true
   }
 }
