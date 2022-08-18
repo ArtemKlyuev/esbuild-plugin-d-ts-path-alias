@@ -1,4 +1,4 @@
-# esbuild-plugin-d-ts-path-alias
+# esbuild-plugin-d-ts-path-alias ![GitHub package.json version](https://img.shields.io/github/package-json/v/ArtemKlyuev/esbuild-plugin-d-ts-path-alias) [![Tests](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/actions/workflows/test.yml/badge.svg)](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/actions/workflows/test.yml)
 
 esbuild plugin for compiling typescript declarations along with path aliases transformation.
 
