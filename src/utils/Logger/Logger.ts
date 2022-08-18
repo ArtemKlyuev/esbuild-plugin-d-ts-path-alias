@@ -15,10 +15,14 @@ export class Logger {
   }
 
   info(message: string): void {
+    this.logger?.log(chalk.blue(`${this.prefix}: ${message}`));
+  }
+
+  success(message: string): void {
     this.logger?.log(chalk.green(`${this.prefix}: ${message}`));
   }
 
-  error(message: string): void {
-    this.logger?.error(chalk.red(`${this.prefix}: ${message}`));
+  error(message: string, ...args: any[]): void {
+    this.logger?.error(chalk.red(`${this.prefix}: ${message}`), ...args);
   }
 }
