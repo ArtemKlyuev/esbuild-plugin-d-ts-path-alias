@@ -4,12 +4,22 @@ ESBuild plugin for compiling typescript declarations along with path aliases tra
 
 ## Table of contents
 
+- [Installation](#installation)
 - [Problem](#problem)
 - [Config](#config)
   - [tsconfigPath](#tsconfigpath)
   - [outputPath](#outputpath)
   - [debug](#debug)
 - [Usage](#usage)
+
+## Installation
+
+```sh
+# Using npm
+npm install esbuild-plugin-d-ts-path-alias --save-dev
+# Using yarn
+yarn add esbuild-plugin-d-ts-path-alias -D
+```
 
 ## Problem
 
