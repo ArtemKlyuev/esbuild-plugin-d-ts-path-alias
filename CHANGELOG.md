@@ -1,3 +1,11 @@
+# [1.1.0](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/compare/v1.0.1...v1.1.0) (2022-08-18)
+
+
+### Features
+
+* add additional info in debug logs, set `noEmit` to `false` ([0268fe6](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/commit/0268fe61b4ce92d91e409fccdf231eb430e93967))
+* add logger `success` method ([800dc91](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/commit/800dc910ced058e676d70d11f893449c0832963c))
+
 ## [1.0.1](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/compare/v1.0.0...v1.0.1) (2022-08-18)
 
 
