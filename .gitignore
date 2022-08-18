@@ -3,6 +3,5 @@ dist
 *.log
 .DS_Store
 .vscode
-.env.local
-.env.*.local
-.env.development
+.env
+.env.*
