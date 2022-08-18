@@ -1,9 +1,10 @@
 import { build, BuildOptions } from 'esbuild';
-
-import { dTSPathAliasPlugin } from './src/plugin';
+import rimraf from 'rimraf';
 
 import { devDependencies, peerDependencies } from './package.json';
+import { dTSPathAliasPlugin } from './src';
 
+const DIST_DIR = 'dist';
 const EXTERNAL_PACKAGES = Object.keys({ ...devDependencies, ...peerDependencies });
 
 const baseOptions: BuildOptions = {
@@ -15,21 +16,23 @@ const baseOptions: BuildOptions = {
   treeShaking: true,
   sourcemap: false,
   minify: false,
-  plugins: [dTSPathAliasPlugin({ outputPath: 'dist/typings' })],
 };
 
 const start = async (): Promise<void> => {
+  rimraf.sync(DIST_DIR);
+
   await build({
     ...baseOptions,
     splitting: true,
     format: 'esm',
-    outdir: 'dist/esm',
+    outdir: `${DIST_DIR}/esm`,
+    plugins: [dTSPathAliasPlugin({ outputPath: `${DIST_DIR}/typings`, debug: true })],
   });
 
   await build({
     ...baseOptions,
     format: 'cjs',
-    outdir: 'dist/cjs',
+    outdir: `${DIST_DIR}/cjs`,
   });
 };
 
