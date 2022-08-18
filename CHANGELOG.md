@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/compare/v1.0.0...v1.0.1) (2022-08-18)
+
+
+### Bug Fixes
+
+* empty build in npm registry ([c0671e9](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/commit/c0671e96b32332b868b117749eafcf645d3b9ff7))
+
 # 1.0.0 (2022-08-17)
 
 
