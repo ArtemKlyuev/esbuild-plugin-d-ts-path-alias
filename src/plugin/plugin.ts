@@ -37,6 +37,8 @@ export const dTSPathAliasPlugin = (pluginOptions?: PluginOptions): Plugin => {
 
       const tsconfigPath = pluginOptions?.tsconfigPath ?? tsconfig ?? DEFAULT_TSCONFIG_LOCATION;
 
+      logger.info(`Used tsconfig: ${path.resolve(process.cwd(), tsconfigPath)}`);
+
       const compilerOptions = getCompilerOptions(tsconfigPath);
 
       const declarationDir = getDeclarationDir({
@@ -46,10 +48,15 @@ export const dTSPathAliasPlugin = (pluginOptions?: PluginOptions): Plugin => {
         tsconfigOutDir: compilerOptions.outDir,
       });
 
+      logger.info(
+        `Declaration files output directory: ${path.resolve(process.cwd(), declarationDir)}`,
+      );
+
       const finalEntryPoints = isObject(entryPoints) ? Object.values(entryPoints) : entryPoints;
 
       const finalCompilerOptions: ts.CompilerOptions = {
         ...compilerOptions,
+        noEmit: false,
         declaration: true,
         emitDeclarationOnly: true,
         declarationDir,
@@ -59,11 +66,17 @@ export const dTSPathAliasPlugin = (pluginOptions?: PluginOptions): Plugin => {
         const emitResult = compileDts(finalEntryPoints!, finalCompilerOptions);
 
         if (emitResult.emitSkipped) {
-          logger.error('Typescript did not emit declaration files!');
+          logger.error('Typescript did not emit declaration files! Additional info:\n', {
+            entryPoints: finalEntryPoints,
+            initialCompilerOptions: compilerOptions,
+            finalCompilerOptions,
+            emitResult,
+          });
+
           return;
         }
 
-        logger.info('Successfully emitted declaration files!');
+        logger.success('Successfully emitted declaration files!');
       });
     },
   };
