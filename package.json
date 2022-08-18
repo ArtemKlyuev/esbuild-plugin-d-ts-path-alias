@@ -1,7 +1,7 @@
 {
   "name": "esbuild-plugin-d-ts-path-alias",
   "version": "1.0.1",
-  "description": "ESBuild plugin for compiling typescript declarations along with path aliases transformation.",
+  "description": "esbuild plugin for compiling typescript declarations along with path aliases transformation.",
   "license": "MIT",
   "author": "Artem Klyuev",
   "main": "dist/cjs/index.js",
