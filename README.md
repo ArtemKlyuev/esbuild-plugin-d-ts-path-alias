@@ -1,6 +1,6 @@
 # esbuild-plugin-d-ts-path-alias
 
-ESBuild plugin for compiling typescript declarations along with path aliases transformation.
+esbuild plugin for compiling typescript declarations along with path aliases transformation.
 
 ## Table of contents
 
@@ -107,7 +107,7 @@ build({
   outfile: './build/out.js',
   plugins: [
     dTSPathAliasPlugin({
-      tsconfigPath: './config/tsconfig.esbuild.json',
+      tsconfigPath: './config/tsconfig.declaration.json',
       outputPath: './build/declaration',
       debug: true,
     }),
