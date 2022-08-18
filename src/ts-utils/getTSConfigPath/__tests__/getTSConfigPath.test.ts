@@ -1,17 +1,20 @@
+import path from 'path';
+
 import { getTSConfigPath } from '../getTSConfigPath';
 
 describe('ts-utils', () => {
   describe('getTSConfigPath', () => {
     it('should return tsconfig path', () => {
-      const path = getTSConfigPath('./example/tsconfig.json');
+      const searchPath = path.resolve(__dirname, '../__fixtures__/tsconfig.fixture.json');
+      const tsconfigPath = getTSConfigPath(searchPath);
 
-      expect(path).toBe('./example/tsconfig.json');
+      expect(tsconfigPath).toBe(searchPath);
     });
 
     it('should return undefined if the path to the config is not found', () => {
-      const path = getTSConfigPath('./non-exist/tsconfig.test.json');
+      const tsconfigPath = getTSConfigPath('./non-exist/tsconfig.test.json');
 
-      expect(path).toBe(undefined);
+      expect(tsconfigPath).toBe(undefined);
     });
   });
 });
