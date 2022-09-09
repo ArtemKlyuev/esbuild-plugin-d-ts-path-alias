@@ -39,7 +39,7 @@
   },
   "peerDependencies": {
     "esbuild": "^0.14.0",
-    "typescript": ">=3.7.2"
+    "typescript": ">=3.7.2 <4.8"
   },
   "dependencies": {
     "@zerollup/ts-transform-paths": "1.7.18",
