@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/compare/v1.1.0...v2.0.0) (2022-09-09)
+
+
+### Bug Fixes
+
+* restrict maximum `typescript` version as less than `4.8` ([97e0c0f](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/commit/97e0c0fefe115545a41f5c2ed2159fbc97919eea))
+
+
+### BREAKING CHANGES
+
+* maximum `typescript` version should not be `4.8` or higher
+
 # [1.1.0](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/compare/v1.0.1...v1.1.0) (2022-08-18)
 
 
