@@ -1,5 +1,6 @@
+import fs from 'fs/promises';
+
 import { build, BuildOptions } from 'esbuild';
-import rimraf from 'rimraf';
 
 import { devDependencies, peerDependencies } from './package.json';
 import { dTSPathAliasPlugin } from './src';
@@ -19,7 +20,7 @@ const baseOptions: BuildOptions = {
 };
 
 const start = async (): Promise<void> => {
-  rimraf.sync(DIST_DIR);
+  await fs.rm(DIST_DIR, { force: true, recursive: true });
 
   await build({
     ...baseOptions,
