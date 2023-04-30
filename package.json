@@ -74,7 +74,7 @@
     "rimraf": "3.0.2",
     "semantic-release": "19.0.3",
     "tmp": "0.2.1",
-    "ts-node": "10.9.1",
+    "tsx": "3.12.7",
     "typescript": "5.0.4"
   }
 }
