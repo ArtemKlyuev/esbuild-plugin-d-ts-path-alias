@@ -18,5 +18,6 @@ const visitorCreator: VisitorCreator = (ctx) => {
 export const removeNonTsImports = <T extends ts.Node>(
   ctx: ts.TransformationContext,
 ): ts.Transformer<T> => {
-  return (sourceFile: T) => ts.visitNode(sourceFile, visitorCreator(ctx));
+  const visitor = visitorCreator(ctx);
+  return (sourceFile) => ts.visitNode(sourceFile, visitor) as T;
 };

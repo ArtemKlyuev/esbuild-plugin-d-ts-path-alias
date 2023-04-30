@@ -1,8 +1,8 @@
-import fs from 'fs/promises';
-import path from 'path';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import crypto from 'node:crypto';
 
 import { build, BuildOptions } from 'esbuild';
-import tmp from 'tmp';
 
 import { PluginOptions, dTSPathAliasPlugin } from '../plugin';
 
@@ -11,45 +11,60 @@ interface Args {
   pluginOptions?: PluginOptions;
 }
 
-const builder = async ({ esbuildOptions, pluginOptions }: Args): Promise<void> => {
-  await build({
+const TEMP_FOLDER_BASE = path.join(process.cwd(), 'temp');
+
+const createTempDirPath = (): string => {
+  const [randomID] = crypto.randomUUID().split('-');
+  return path.join(TEMP_FOLDER_BASE, randomID);
+};
+
+const builder = ({ esbuildOptions, pluginOptions }: Args) => {
+  return build({
     entryPoints: [path.resolve(__dirname, '../__fixtures__/index.ts')],
     absWorkingDir: path.resolve(__dirname, '../__fixtures__'),
     bundle: true,
-    plugins: [dTSPathAliasPlugin(pluginOptions)],
+    write: false,
+    plugins: [
+      dTSPathAliasPlugin({
+        tsconfigPath: path.resolve(__dirname, '../__fixtures__/tsconfig.json'),
+        ...pluginOptions,
+      }),
+    ],
     ...esbuildOptions,
   });
 };
 
+const setup = async () => {
+  const buildDir = createTempDirPath();
+
+  await builder({ esbuildOptions: { outdir: buildDir } });
+
+  const cleanup = () => fs.rm(buildDir, { recursive: true });
+  const readFile = (filePath: string) => fs.readFile(path.resolve(buildDir, filePath), 'utf-8');
+
+  return { cleanup, readFile };
+};
+
 describe('plugin', () => {
   it('should apply alias transform to declaration files', async () => {
-    const buildDir = tmp.dirSync();
+    const { cleanup, readFile } = await setup();
 
-    await builder({
-      esbuildOptions: { outdir: buildDir.name },
-      pluginOptions: { tsconfigPath: path.resolve(__dirname, '../__fixtures__/tsconfig.json') },
-    });
-
-    const buildResult = await fs.readFile(`${buildDir.name}/someFunc.d.ts`, 'utf-8');
+    const buildResult = await readFile('someFunc.d.ts');
 
     expect(buildResult).not.toContain('@utils/foo');
     expect(buildResult).toContain('./utils/foo');
 
-    fs.rm(buildDir.name, { recursive: true });
+    await cleanup();
   });
 
   it('should remove non type imports from declaration files', async () => {
-    const buildDir = tmp.dirSync();
+    const { cleanup, readFile } = await setup();
 
-    await builder({
-      esbuildOptions: { outdir: buildDir.name },
-      pluginOptions: { tsconfigPath: path.resolve(__dirname, '../__fixtures__/tsconfig.json') },
-    });
-
-    const buildResult = await fs.readFile(`${buildDir.name}/index.d.ts`, 'utf-8');
+    const buildResult = await readFile('index.d.ts');
 
     expect(buildResult).not.toContain('import "./index.css"');
+    expect(buildResult.trim()).toBe("export * from './someFunc';");
 
-    fs.rm(buildDir.name, { recursive: true });
+    cleanup();
   });
 });

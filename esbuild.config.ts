@@ -1,5 +1,6 @@
+import fs from 'fs/promises';
+
 import { build, BuildOptions } from 'esbuild';
-import rimraf from 'rimraf';
 
 import { devDependencies, peerDependencies } from './package.json';
 import { dTSPathAliasPlugin } from './src';
@@ -8,7 +9,7 @@ const DIST_DIR = 'dist';
 const EXTERNAL_PACKAGES = Object.keys({ ...devDependencies, ...peerDependencies });
 
 const baseOptions: BuildOptions = {
-  target: 'es2019',
+  target: 'es2020',
   external: EXTERNAL_PACKAGES,
   platform: 'node',
   entryPoints: ['./src/index.ts'],
@@ -19,9 +20,9 @@ const baseOptions: BuildOptions = {
 };
 
 const start = async (): Promise<void> => {
-  rimraf.sync(DIST_DIR);
+  await fs.rm(DIST_DIR, { force: true, recursive: true });
 
-  await build({
+  const esmBuild = build({
     ...baseOptions,
     splitting: true,
     format: 'esm',
@@ -29,11 +30,13 @@ const start = async (): Promise<void> => {
     plugins: [dTSPathAliasPlugin({ outputPath: `${DIST_DIR}/typings`, debug: true })],
   });
 
-  await build({
+  const cjsBuild = build({
     ...baseOptions,
     format: 'cjs',
     outdir: `${DIST_DIR}/cjs`,
   });
+
+  await Promise.all([esmBuild, cjsBuild]);
 };
 
 start();
