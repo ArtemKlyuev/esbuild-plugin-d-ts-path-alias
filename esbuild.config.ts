@@ -22,7 +22,7 @@ const baseOptions: BuildOptions = {
 const start = async (): Promise<void> => {
   await fs.rm(DIST_DIR, { force: true, recursive: true });
 
-  await build({
+  const esmBuild = build({
     ...baseOptions,
     splitting: true,
     format: 'esm',
@@ -30,11 +30,13 @@ const start = async (): Promise<void> => {
     plugins: [dTSPathAliasPlugin({ outputPath: `${DIST_DIR}/typings`, debug: true })],
   });
 
-  await build({
+  const cjsBuild = build({
     ...baseOptions,
     format: 'cjs',
     outdir: `${DIST_DIR}/cjs`,
   });
+
+  await Promise.all([esmBuild, cjsBuild]);
 };
 
 start();
