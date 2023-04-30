@@ -30,7 +30,11 @@ export const getCompilerOptionsJson = (configPath: string): ts.CompilerOptions |
   if (tsconfig.config.extends) {
     const { searchPath } = getConfigPath(configPath);
 
-    const options = getCompilerOptionsJson(path.join(searchPath, tsconfig.config.extends));
+    const extendedConfig = Array.isArray(tsconfig.config.extends)
+      ? tsconfig.config.extends[0]
+      : tsconfig.config.extends;
+
+    const options = getCompilerOptionsJson(path.join(searchPath, extendedConfig));
 
     result.push(options);
   }
