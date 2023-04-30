@@ -1,3 +1,17 @@
+# [3.0.0](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/compare/v2.0.0...v3.0.0) (2023-04-30)
+
+
+### breaking
+
+* update dependencies ([c56c559](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/commit/c56c5595e2bce29cab098a5d6607a51aa8369baa))
+
+
+### BREAKING CHANGES
+
+* - update required `typescript version` to `>=5`
+- update required `esbuild` version to `^0.17.0`
+- update required `nodejs` version to `>=16.10.0`
+
 # [2.0.0](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/compare/v1.1.0...v2.0.0) (2022-09-09)
 
 
