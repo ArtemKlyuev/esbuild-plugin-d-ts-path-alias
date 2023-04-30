@@ -8,7 +8,7 @@ const DIST_DIR = 'dist';
 const EXTERNAL_PACKAGES = Object.keys({ ...devDependencies, ...peerDependencies });
 
 const baseOptions: BuildOptions = {
-  target: 'es2019',
+  target: 'es2020',
   external: EXTERNAL_PACKAGES,
   platform: 'node',
   entryPoints: ['./src/index.ts'],
