@@ -1,5 +1,5 @@
 import * as ts from 'typescript';
-import tsTransformPaths from '@zerollup/ts-transform-paths';
+import tsTransformPaths from 'typescript-transform-paths';
 
 import { removeNonTsImports } from '../removeNonTsImports';
 
@@ -14,7 +14,7 @@ export const compileDts = (files: string[], compilerOptions: ts.CompilerOptions)
   const transformer = tsTransformPaths(program);
 
   const emitResult = program.emit(undefined, undefined, undefined, undefined, {
-    afterDeclarations: [removeNonTsImports, transformer.afterDeclarations!],
+    afterDeclarations: [removeNonTsImports, transformer],
   });
 
   return emitResult;
