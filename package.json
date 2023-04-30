@@ -55,7 +55,6 @@
     "@swc/jest": "0.2.22",
     "@types/jest": "29.5.1",
     "@types/node": "18.16.3",
-    "@types/tmp": "0.2.3",
     "@typescript-eslint/eslint-plugin": "5.31.0",
     "@typescript-eslint/parser": "5.31.0",
     "cross-env": "7.0.3",
@@ -71,7 +70,6 @@
     "lint-staged": "13.0.3",
     "prettier": "2.7.1",
     "semantic-release": "21.0.2",
-    "tmp": "0.2.1",
     "tsx": "3.12.7",
     "typescript": "5.0.4"
   }
