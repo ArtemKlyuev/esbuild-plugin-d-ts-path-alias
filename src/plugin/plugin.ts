@@ -2,8 +2,10 @@ import path from 'path';
 
 import { Plugin } from 'esbuild';
 import * as ts from 'typescript';
+// import { getTsconfig } from 'get-tsconfig';
 
-import { compileDts, getCompilerOptions } from '../ts-utils';
+import { compileDts, getCompilerOptions, getConfigPath } from '../ts-utils';
+
 import { Logger, getDeclarationDir, getESBuildOutDir, isObject } from '../utils';
 
 export interface PluginOptions {
@@ -39,7 +41,39 @@ export const dTSPathAliasPlugin = (pluginOptions?: PluginOptions): Plugin => {
 
       logger.info(`Used tsconfig: ${path.resolve(process.cwd(), tsconfigPath)}`);
 
+      console.log('tsconfigPath--->', tsconfigPath);
+
       const compilerOptions = getCompilerOptions(tsconfigPath);
+
+      // const result = getTsconfig(tsconfigPath);
+
+      // if (!result) {
+      //   throw new Error('No result');
+      // }
+
+      // // const {
+      // //   config: { compilerOptions },
+      // // } = result;
+      // const compilerOptionsUnconverted = result.config.compilerOptions;
+
+      // if (!compilerOptionsUnconverted) {
+      //   throw new Error('No compiler options');
+      // }
+
+      // const a = getConfigPath(tsconfigPath);
+
+      // console.log('tsconfigPath', a);
+
+      // const compilerOptions = ts.convertCompilerOptionsFromJson(
+      //   compilerOptionsUnconverted,
+      //   a.searchPath,
+      // ).options;
+      // // console.log('tsconfigPath', tsconfigPath);
+      // console.log('old compiler options', compilerOptionsOld);
+
+      // console.log('new compiler options', compilerOptions);
+
+      // const compilerOptions = getCompilerOptions2(tsconfigPath);
 
       const declarationDir = getDeclarationDir({
         esbuildOutDir,

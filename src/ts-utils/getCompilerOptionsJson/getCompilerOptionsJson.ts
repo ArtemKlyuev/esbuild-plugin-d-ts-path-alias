@@ -1,6 +1,7 @@
-import path from 'path';
+import path from 'node:path';
 
 import * as ts from 'typescript';
+import findNodeNodules from 'find-node-modules';
 
 import { getConfigPath } from '../getConfigPath';
 import { getTSConfigPath } from '../getTSConfigPath';
@@ -15,11 +16,25 @@ const formatHost: ts.FormatDiagnosticsHost = {
 export const getCompilerOptionsJson = (configPath: string): ts.CompilerOptions | never => {
   const tsconfigPath = getTSConfigPath(configPath);
 
-  if (!tsconfigPath) {
-    throw new Error(`Can't find typescript config file. Searched path: "${configPath}"`);
+  const nodeModulesPath = getTSConfigPath(path.resolve(findNodeNodules()[0], configPath));
+
+  if (!tsconfigPath && !nodeModulesPath) {
+    console.log({
+      configPath,
+      kek: findNodeNodules(),
+      pr: process.cwd(),
+      resolved: path.resolve(findNodeNodules()[0], configPath),
+      kek2: findNodeNodules({ cwd: './someDir' }),
+      kek3: findNodeNodules({ relative: false }),
+    });
+    throw new Error(
+      `Can't find typescript config file.\nSearched path: "${configPath}"\nnode_modules path: ${nodeModulesPath}`,
+    );
   }
 
-  const tsconfig = readConfigFile(tsconfigPath);
+  const finalTsConfigPath = tsconfigPath ?? nodeModulesPath;
+
+  const tsconfig = readConfigFile(finalTsConfigPath!);
 
   if (tsconfig.error) {
     throw new Error(ts.formatDiagnostic(tsconfig.error, formatHost));
@@ -29,6 +44,8 @@ export const getCompilerOptionsJson = (configPath: string): ts.CompilerOptions |
 
   if (tsconfig.config.extends) {
     const { searchPath } = getConfigPath(configPath);
+
+    console.log('extends____', { searchPath });
 
     const options = getCompilerOptionsJson(path.join(searchPath, tsconfig.config.extends));
 
