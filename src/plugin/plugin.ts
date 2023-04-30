@@ -1,7 +1,7 @@
 import path from 'path';
 
 import { Plugin } from 'esbuild';
-import * as ts from 'typescript';
+import ts from 'typescript';
 
 import { compileDts, getCompilerOptions } from '../ts-utils';
 import { Logger, getDeclarationDir, getESBuildOutDir, isObject } from '../utils';
