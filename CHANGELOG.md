@@ -8,7 +8,7 @@
 
 ### BREAKING CHANGES
 
-* - update required `typescript version` to `>=5`
+- update required `typescript version` to `>=5`
 - update required `esbuild` version to `^0.17.0`
 - update required `nodejs` version to `>=16.10.0`
 
