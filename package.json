@@ -5,11 +5,15 @@
   "description": "esbuild plugin for compiling typescript declarations along with path aliases transformation.",
   "license": "MIT",
   "author": "Artem Klyuev",
-  "main": "dist/cjs/index.js",
-  "typings": "dist/typings/plugin/plugin.d.ts",
-  "module": "dist/esm/index.js",
   "engines": {
     "node": ">=16.10.0"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/typings/plugin/plugin.d.ts"
+    }
   },
   "keywords": [
     "typescript",
