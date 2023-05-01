@@ -51,7 +51,6 @@
     "typescript": ">=5.0"
   },
   "dependencies": {
-    "chalk": "4.1.2",
     "typescript-transform-paths": "3.4.6"
   },
   "devDependencies": {

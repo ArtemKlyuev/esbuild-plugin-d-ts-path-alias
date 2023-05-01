@@ -1,10 +1,4 @@
-import { Logger } from '../Logger';
-
-jest.mock('chalk', () => ({
-  blue: jest.fn((input) => input),
-  green: jest.fn((input) => input),
-  red: jest.fn((input) => input),
-}));
+import { Logger, color } from '../Logger';
 
 describe('utils', () => {
   describe('Logger', () => {
@@ -37,7 +31,7 @@ describe('utils', () => {
 
       expect(log).toBeCalled();
       expect(log).toHaveBeenCalledTimes(1);
-      expect(log).toBeCalledWith('[logger]: info');
+      expect(log).toBeCalledWith(color.blue('[logger]: info'));
     });
 
     it('should print success message', () => {
@@ -49,7 +43,7 @@ describe('utils', () => {
 
       expect(log).toBeCalled();
       expect(log).toHaveBeenCalledTimes(1);
-      expect(log).toBeCalledWith('[logger]: success');
+      expect(log).toBeCalledWith(color.green('[logger]: success'));
     });
 
     it('should print error message', () => {
@@ -61,7 +55,7 @@ describe('utils', () => {
 
       expect(error).toBeCalled();
       expect(error).toHaveBeenCalledTimes(1);
-      expect(error).toBeCalledWith('[logger]: error');
+      expect(error).toBeCalledWith(color.red('[logger]: error'));
     });
 
     it('should pass additional params to error message', () => {
@@ -73,7 +67,7 @@ describe('utils', () => {
 
       expect(error).toBeCalled();
       expect(error).toHaveBeenCalledTimes(1);
-      expect(error).toBeCalledWith('[logger]: error', 5);
+      expect(error).toBeCalledWith(color.red('[logger]: error'), 5);
     });
   });
 });

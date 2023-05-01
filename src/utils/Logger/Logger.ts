@@ -1,4 +1,8 @@
-import chalk from 'chalk';
+export const color = {
+  red: (text: string) => `\x1b[31m${text}\x1b[0m`,
+  green: (text: string) => `\x1b[32m${text}\x1b[0m`,
+  blue: (text: string) => `\x1b[34m${text}\x1b[0m`,
+};
 
 export class Logger {
   private readonly logger?: Console;
@@ -15,14 +19,14 @@ export class Logger {
   }
 
   info(message: string): void {
-    this.logger?.log(chalk.blue(`${this.prefix}: ${message}`));
+    this.logger?.log(color.blue(`${this.prefix}: ${message}`));
   }
 
   success(message: string): void {
-    this.logger?.log(chalk.green(`${this.prefix}: ${message}`));
+    this.logger?.log(color.green(`${this.prefix}: ${message}`));
   }
 
   error(message: string, ...args: any[]): void {
-    this.logger?.error(chalk.red(`${this.prefix}: ${message}`), ...args);
+    this.logger?.error(color.red(`${this.prefix}: ${message}`), ...args);
   }
 }
