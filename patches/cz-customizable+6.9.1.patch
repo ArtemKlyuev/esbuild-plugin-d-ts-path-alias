@@ -1,0 +1,13 @@
+diff --git a/node_modules/cz-customizable/index.js b/node_modules/cz-customizable/index.js
+index 026b039..a19ac33 100755
+--- a/node_modules/cz-customizable/index.js
++++ b/node_modules/cz-customizable/index.js
+@@ -12,7 +12,7 @@ const readConfigFile = require('./lib/read-config-file');
+ 
+ module.exports = {
+   prompter(cz, commit) {
+-    const config = readConfigFile();
++    const config = readConfigFile('.cz-config.cjs');
+     config.subjectLimit = config.subjectLimit || 100;
+     log.info('All lines except first will be wrapped after 100 characters.');
+ 

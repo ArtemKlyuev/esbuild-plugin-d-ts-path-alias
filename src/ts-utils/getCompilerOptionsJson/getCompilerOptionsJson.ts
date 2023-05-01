@@ -1,10 +1,15 @@
 import path from 'path';
 
-import * as ts from 'typescript';
+// import ts from 'typescript';
+import ts from 'typescript';
 
 import { getConfigPath } from '../getConfigPath';
 import { getTSConfigPath } from '../getTSConfigPath';
 import { readConfigFile } from '../readConfigFile';
+
+// console.log('ts2', ts2);
+// console.log('sys in ts2', 'sys' in ts2);
+// console.log('sys in ts', 'sys' in ts);
 
 const formatHost: ts.FormatDiagnosticsHost = {
   getCanonicalFileName: (filePath) => filePath,

@@ -1,14 +1,21 @@
 {
   "name": "esbuild-plugin-d-ts-path-alias",
-  "version": "3.0.0",
+  "version": "4.0.0-beta.3",
+  "type": "module",
   "description": "esbuild plugin for compiling typescript declarations along with path aliases transformation.",
   "license": "MIT",
   "author": "Artem Klyuev",
-  "main": "dist/cjs/index.js",
-  "typings": "dist/typings/plugin/plugin.d.ts",
-  "module": "dist/esm/index.js",
   "engines": {
     "node": ">=16.10.0"
+  },
+  "sideEffects": false,
+  "types": "dist/typings/plugin/plugin.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/typings/plugin/plugin.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
   },
   "keywords": [
     "typescript",
@@ -38,14 +45,13 @@
     "test:watch": "jest --watch",
     "release:dry-run": "cross-env NODE_ENV=development semantic-release",
     "cm": "./node_modules/cz-customizable/standalone.js",
-    "prepare": "husky install"
+    "prepare": "patch-package && husky install"
   },
   "peerDependencies": {
     "esbuild": "^0.17.0",
     "typescript": ">=5.0"
   },
   "dependencies": {
-    "chalk": "4.1.2",
     "typescript-transform-paths": "3.4.6"
   },
   "devDependencies": {
@@ -68,6 +74,8 @@
     "husky": "8.0.1",
     "jest": "29.5.0",
     "lint-staged": "13.2.2",
+    "patch-package": "7.0.0",
+    "postinstall-postinstall": "2.1.0",
     "prettier": "2.8.8",
     "semantic-release": "19.0.3",
     "tsx": "3.12.7",
