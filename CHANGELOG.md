@@ -1,3 +1,21 @@
+# [4.0.0-beta.1](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/compare/v3.0.0...v4.0.0-beta.1) (2023-05-01)
+
+
+### Bug Fixes
+
+* `changelog` typo ([7822660](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/commit/7822660d75cfffef8a293f514b546573364084c9))
+
+
+### Features
+
+* add `exports` field to `package.json` ([1197054](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/commit/11970546811e18faf1f62c83fc089c0295b1c9d3))
+* set `"type": "module"` for package ([fd53b41](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/commit/fd53b41e929249da08d6de924553b62473afa02e))
+
+
+### BREAKING CHANGES
+
+* remove `main`, `module`, `typings` fields from `package.json`
+
 # [3.0.0](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/compare/v2.0.0...v3.0.0) (2023-04-30)
 
 
