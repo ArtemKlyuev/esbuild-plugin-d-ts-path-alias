@@ -1,3 +1,10 @@
+# [4.0.0-beta.2](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/compare/v4.0.0-beta.1...v4.0.0-beta.2) (2023-05-01)
+
+
+### Bug Fixes
+
+* `postinstall script` ([9fae936](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/commit/9fae9367c1b65e95539ad17980ad10cf7dbfb4a5))
+
 # [4.0.0-beta.1](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/compare/v3.0.0...v4.0.0-beta.1) (2023-05-01)
 
 
