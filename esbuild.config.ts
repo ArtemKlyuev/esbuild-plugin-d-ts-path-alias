@@ -27,6 +27,13 @@ const start = async (): Promise<void> => {
     splitting: true,
     format: 'esm',
     outdir: `${DIST_DIR}/esm`,
+    banner: {
+      // fix Error: Dynamic require of `x`(any cjs module) is not supported
+      js: [
+        "import { createRequire as topLevelCreateRequire } from 'module';",
+        'const require = topLevelCreateRequire(import.meta.url);',
+      ].join('\n'),
+    },
     plugins: [dTSPathAliasPlugin({ outputPath: `${DIST_DIR}/typings`, debug: true })],
   });
 
