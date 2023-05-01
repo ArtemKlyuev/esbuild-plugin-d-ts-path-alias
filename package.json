@@ -35,7 +35,6 @@
   },
   "homepage": "https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias",
   "scripts": {
-    "postinstall": "patch-package",
     "typecheck": "tsc --pretty --noEmit",
     "lint": "eslint '**/*.{js,jsx,ts,tsx}' --quiet",
     "lint:fix": "yarn lint:js --fix --no-error-on-unmatched-pattern",
@@ -44,7 +43,7 @@
     "test:watch": "jest --watch",
     "release:dry-run": "cross-env NODE_ENV=development semantic-release",
     "cm": "./node_modules/cz-customizable/standalone.js",
-    "prepare": "husky install"
+    "prepare": "patch-package && husky install"
   },
   "peerDependencies": {
     "esbuild": "^0.17.0",
