@@ -1,3 +1,10 @@
+# [4.0.0-beta.3](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/compare/v4.0.0-beta.2...v4.0.0-beta.3) (2023-05-01)
+
+
+### Bug Fixes
+
+* `vscode` intellisense ([c11cb1b](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/commit/c11cb1bfd1f6dd67c0450cf084d0b267913471e9))
+
 # [4.0.0-beta.2](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/compare/v4.0.0-beta.1...v4.0.0-beta.2) (2023-05-01)
 
 
