@@ -1,4 +1,5 @@
-import path from 'path';
+import path from 'node:path';
+import util from 'node:util';
 
 import { Plugin } from 'esbuild';
 import ts from 'typescript';
@@ -61,6 +62,8 @@ export const dTSPathAliasPlugin = (pluginOptions?: PluginOptions): Plugin => {
         emitDeclarationOnly: true,
         declarationDir,
       };
+
+      logger.info(`Used compiler options:\n${util.inspect(finalCompilerOptions)}`);
 
       build.onEnd(() => {
         const emitResult = compileDts(finalEntryPoints!, finalCompilerOptions);
