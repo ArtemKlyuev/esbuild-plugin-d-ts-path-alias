@@ -28,5 +28,14 @@ describe('utils', () => {
 
       expect(result).toBe('process.cwd');
     });
+
+    it('should return `process.cwd` if no `outdir` or `outfile` passed', () => {
+      const spy = jest.spyOn(process, 'cwd');
+      spy.mockReturnValue('process.cwd');
+
+      const result = getESBuildOutDir();
+
+      expect(result).toBe('process.cwd');
+    });
   });
 });
