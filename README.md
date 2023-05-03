@@ -65,7 +65,7 @@ Custom path to output declaration files. If specified, it will be used as the hi
 
 ### debug
 
-Should plugin output debug logs.
+Should plugin output debug logs to console.
 
 | Type      | Required | Default |
 | --------- | -------- | ------- |

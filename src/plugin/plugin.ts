@@ -1,11 +1,10 @@
 import path from 'node:path';
-import util from 'node:util';
 
 import { Plugin } from 'esbuild';
 import ts from 'typescript';
 
 import { compileDts, getCompilerOptions } from '../ts-utils';
-import { Logger, getDeclarationDir, getESBuildOutDir, isObject } from '../utils';
+import { Logger, getDeclarationDir, getDtsEntryPoints, getESBuildOutDir } from '../utils';
 
 export interface PluginOptions {
   /**
@@ -17,7 +16,7 @@ export interface PluginOptions {
    */
   outputPath?: string;
   /**
-   * Should plugin output debug logs
+   * Should plugin output debug logs to console
    */
   debug?: boolean;
 }
@@ -53,7 +52,7 @@ export const dTSPathAliasPlugin = (pluginOptions?: PluginOptions): Plugin => {
         `Declaration files output directory: ${path.resolve(process.cwd(), declarationDir)}`,
       );
 
-      const finalEntryPoints = isObject(entryPoints) ? Object.values(entryPoints) : entryPoints;
+      const dtsEntryPoints = getDtsEntryPoints(entryPoints);
 
       const finalCompilerOptions: ts.CompilerOptions = {
         ...compilerOptions,
@@ -63,14 +62,14 @@ export const dTSPathAliasPlugin = (pluginOptions?: PluginOptions): Plugin => {
         declarationDir,
       };
 
-      logger.info(`Used compiler options:\n${util.inspect(finalCompilerOptions)}`);
+      logger.info('Used compiler options:\n', finalCompilerOptions);
 
       build.onEnd(() => {
-        const emitResult = compileDts(finalEntryPoints!, finalCompilerOptions);
+        const emitResult = compileDts(dtsEntryPoints!, finalCompilerOptions);
 
         if (emitResult.emitSkipped) {
           logger.error('Typescript did not emit declaration files! Additional info:\n', {
-            entryPoints: finalEntryPoints,
+            entryPoints: dtsEntryPoints,
             initialCompilerOptions: compilerOptions,
             finalCompilerOptions,
             emitResult,

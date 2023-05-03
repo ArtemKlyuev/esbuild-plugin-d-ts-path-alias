@@ -18,12 +18,12 @@ export class Logger {
     this.logger = console;
   }
 
-  info(message: string): void {
-    this.logger?.log(color.blue(`${this.prefix}: ${message}`));
+  info(message: string, ...args: any[]): void {
+    this.logger?.log(color.blue(`${this.prefix}: ${message}`), ...args);
   }
 
-  success(message: string): void {
-    this.logger?.log(color.green(`${this.prefix}: ${message}`));
+  success(message: string, ...args: any[]): void {
+    this.logger?.log(color.green(`${this.prefix}: ${message}`), ...args);
   }
 
   error(message: string, ...args: any[]): void {
