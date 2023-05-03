@@ -1,3 +1,16 @@
+# [4.1.0](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/compare/v4.0.0...v4.1.0) (2023-05-03)
+
+
+### Bug Fixes
+
+* error if no `outdir` and `outfile` was provided to `esbuild` ([b08c0e1](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/commit/b08c0e16360a7584c5786b5231a7ca44a726047f))
+
+
+### Features
+
+* add support for different `esbuild` `entryPoints` ([cb6d632](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/commit/cb6d6329f666b0e627addf3b4253e626178dbe07))
+* print `compilerOptions` used by plugin in `debug` mode ([4ee9168](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/commit/4ee9168b3a4afec77cb9724ad678ad630fca6a11))
+
 # [4.0.0](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/compare/v3.0.0...v4.0.0) (2023-05-01)
 
 
