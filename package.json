@@ -79,6 +79,6 @@
     "prettier": "2.8.8",
     "semantic-release": "19.0.3",
     "tsx": "3.12.7",
-    "typescript": "5.0.4"
+    "typescript": "5.1.3"
   }
 }
