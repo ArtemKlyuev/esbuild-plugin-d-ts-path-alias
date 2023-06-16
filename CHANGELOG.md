@@ -1,3 +1,10 @@
+# [4.2.0](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/compare/v4.1.0...v4.2.0) (2023-06-16)
+
+
+### Features
+
+* add support for `esbuild` version `0.18` ([5de1df2](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/commit/5de1df298945b5e039c5f090518abadc17bc44d2))
+
 # [4.1.0](https://github.com/ArtemKlyuev/esbuild-plugin-d-ts-path-alias/compare/v4.0.0...v4.1.0) (2023-05-03)
 
 
